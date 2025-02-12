@@ -1,0 +1,59 @@
+{
+    "version": 3,
+    "configurePresets": [
+        {
+            "name": "defaults",
+            "hidden": true,
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "installDir": "${sourceDir}/install",
+            "cacheVariables": {
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "On",
+                "CMAKE_COMPILE_WARNING_AS_ERROR": "On"
+            }
+        },
+        {
+            "name": "GCC",
+            "inherits": "defaults",
+            "cacheVariables": {
+                "CMAKE_CONFIGURATION_TYPES": "Debug;Release;RelWithDebInfo;MinSizeRel"
+            },
+            "generator": "Ninja Multi-Config"
+        },
+        {
+            "name": "CLANG",
+            "inherits": "GCC",
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "clang",
+                "CMAKE_CXX_COMPILER": "clang++"
+            },
+            "generator": "Ninja"
+        },
+        {
+            "name": "CLANG-CL",
+            "inherits": "defaults",
+            "toolchainFile": "${sourceDir}/cmake/toolchain-clang-x86_64-pc-windows-msvc.cmake",
+            "cacheVariables": {
+                "CMAKE_COMPILE_WARNING_AS_ERROR": "Off",
+                "CMAKE_CONFIGURATION_TYPES": "Debug;Release;RelWithDebInfo;MinSizeRel"
+            },
+            "generator": "Ninja Multi-Config"
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "GCC",
+            "configuration": "Debug",
+            "configurePreset": "GCC"
+        },
+        {
+            "name": "CLANG",
+            "configuration": "Debug",
+            "configurePreset": "CLANG"
+        },
+        {
+            "name": "CLANG-CL",
+            "configuration": "Debug",
+            "configurePreset": "CLANG-CL"
+        }
+    ]
+}
