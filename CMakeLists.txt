@@ -5,6 +5,10 @@ project(example LANGUAGES C CXX VERSION 1.0.0)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED On)
 
+if (NOT CUSTOM_MBEDTLS_VERSION)
+    set(CUSTOM_MBEDTLS_VERSION "v3.6.0")
+endif()
+
 if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
     add_compile_options($<$<CXX_COMPILER_ID:MSVC>:/EHsc>)
 endif()

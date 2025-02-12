@@ -25,18 +25,15 @@
             "cacheVariables": {
                 "CMAKE_C_COMPILER": "clang",
                 "CMAKE_CXX_COMPILER": "clang++"
-            },
-            "generator": "Ninja"
+            }
         },
         {
-            "name": "CLANG-CL",
-            "inherits": "defaults",
+            "name": "CLANG-CL-MSVC",
+            "inherits": "GCC",
             "toolchainFile": "${sourceDir}/cmake/toolchain-clang-x86_64-pc-windows-msvc.cmake",
             "cacheVariables": {
-                "CMAKE_COMPILE_WARNING_AS_ERROR": "Off",
-                "CMAKE_CONFIGURATION_TYPES": "Debug;Release;RelWithDebInfo;MinSizeRel"
-            },
-            "generator": "Ninja Multi-Config"
+                "CMAKE_COMPILE_WARNING_AS_ERROR": "Off"
+            }
         }
     ],
     "buildPresets": [
@@ -51,9 +48,9 @@
             "configurePreset": "CLANG"
         },
         {
-            "name": "CLANG-CL",
+            "name": "CLANG-CL-MSVC",
             "configuration": "Debug",
-            "configurePreset": "CLANG-CL"
+            "configurePreset": "CLANG-CL-MSVC"
         }
     ]
 }
